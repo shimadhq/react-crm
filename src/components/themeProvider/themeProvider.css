@@ -1,0 +1,35 @@
+.toggle-light{
+    width: 65px;
+    padding: 2px;
+    border-radius: 1em;
+    transition: all 300ms;
+    background-color: var(--background-color);
+    cursor: pointer;
+}
+
+.toggle-dark{
+    width: 65px;
+    padding: 2px;
+    border-radius: 1em;
+    transition: all 300ms;
+    background-color: var(--secondary-bg-color);
+    cursor: pointer;
+}
+
+.moon{
+    position: relative;
+    top: 1px;
+    right: 20px;
+    color: var(--primary-toggle-color);
+    font-size: 12px;
+    transition: all 300ms;
+}
+
+.sun{
+    position: relative;
+    top: 1.5px;
+    right: -20px;
+    color: var(--secondary-toggle-color);
+    font-size: 12px;
+    transition: all 300ms;
+}

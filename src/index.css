@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'yekan-bakh';
+  src: url('../public/fonts/YekanBakhFaNum-Thin.ttf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'yekan-bakh';
+  src: url('../public/fonts/YekanBakhFaNum-Light.ttf');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'yekan-bakh';
+  src: url('../public/fonts/YekanBakhFaNum-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'yekan-bakh';
+  src: url('../public/fonts/YekanBakhFaNum-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'yekan-bakh';
+  src: url('../public/fonts/YekanBakhFaNum-Bold.ttf');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'yekan-bakh';
+  src: url('../public/fonts/YekanBakhFaNum-ExtraBold.ttf');
+  font-weight: 800;
+}
+
+
+body {
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  margin: 0;
+  font-family: 'yekan-bakh';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  background-color: #1B263B;
+  color: #e2e8f0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root{
+  --background-color: #f6f6f6;
+  --foreground-color: #BAECBE;
+  --secondary-bg-color: #1B263B;
+  --primary-text-color: #252323;
+  --secondary-text-color: #f5f1ed;
+  --primary-toggle-color: #1B263B;
+  --secondary-toggle-color: #ffe747;
+}
