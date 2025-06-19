@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiX } from 'react-icons/fi';
+import { FiAlignRight, FiX } from 'react-icons/fi';
 import { ThemeSwitcher } from '../themeProvider/themeSwitcher';
 import { useSidebar } from './sidebarContext'; 
 import logo from '../../assets/images/logo.png';
@@ -8,6 +8,11 @@ import './sidebar.css';
 
 const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false }) => {
     const { sidebarType, setSidebarType, isSidebarOpen, toggleSidebar, setIsSidebarOpen } = useSidebar();
+    const [ showDropDown, setShowDropDown ] = useState(false);
+
+    const toggleDropDown = () => {
+        setShowDropDown(!showDropDown);
+    }
 
     const handleReturnToProfile = useCallback(() => {
         console.log('Returning to dashboard');
@@ -55,7 +60,19 @@ const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false
                             <li><Link to="#">عملیات</Link></li>
                             <li><Link to="#">مشتریان</Link></li>
                             <li><Link to="#">قراردادها</Link></li>
-                            <li><Link to="#">گزارشات</Link></li>
+                            <li>
+                                <Link to="#">
+                                  <h6>گزارشات</h6>
+                                  {showDropDown ? (
+                                    <FiX size={24} onClick={toggleDropDown} />
+                                  ) : (
+                                    <FiAlignRight size={24} onClick={toggleDropDown} />
+                                  )}
+                                </Link>
+                                {showDropDown && (
+                                    <h6>drop down is working</h6>
+                                )}
+                            </li>
                             <li><Link to="#">اموال</Link></li>
                             <li><Link to="#">امور مالی</Link></li>
                             <li><Link to="#">تنظیمات</Link></li>

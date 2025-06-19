@@ -48,6 +48,10 @@
 ul{
     padding: 0;
 }
+li {
+    justify-content: space-between;
+    text-align: center;
+}
 ul li{
     list-style-type: none;
     text-align: center;
