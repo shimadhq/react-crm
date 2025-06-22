@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiAlignRight, FiX } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
+import { SlArrowDown } from "react-icons/sl";
+import { SlArrowUp } from "react-icons/sl";
 import { ThemeSwitcher } from '../themeProvider/themeSwitcher';
 import { useSidebar } from './sidebarContext'; 
 import logo from '../../assets/images/logo.png';
@@ -8,11 +10,7 @@ import './sidebar.css';
 
 const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false }) => {
     const { sidebarType, setSidebarType, isSidebarOpen, toggleSidebar, setIsSidebarOpen } = useSidebar();
-    const [ showDropDown, setShowDropDown ] = useState(false);
-
-    const toggleDropDown = () => {
-        setShowDropDown(!showDropDown);
-    }
+    const [activeSubmenu, setActiveSubmenu] = useState(null);
 
     const handleReturnToProfile = useCallback(() => {
         console.log('Returning to dashboard');
@@ -24,6 +22,10 @@ const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false
         e.stopPropagation(); 
         toggleSidebar();
     }, [toggleSidebar]);
+
+    const toggleSubmenu = (menuId) => {
+        setActiveSubmenu(activeSubmenu === menuId ? null : menuId);
+    };
 
     if (!useSidebar) {
         console.error('useSidebar is undefined, Sidebar cannot render');
@@ -47,8 +49,8 @@ const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false
                     </div>
                     <div className="side-menu">
                         <ul>
-                            <li><Link to="/profile">داشبورد</Link></li>
-                            <li>
+                            <li className='simple-li'><Link to="/profile">داشبورد</Link></li>
+                            <li className='simple-li'>
                                 <Link
                                     to="/profile/control-guards"
                                     onClick={() => setSidebarType('guard')}
@@ -56,26 +58,61 @@ const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false
                                     نگهبان‌ها
                                 </Link>
                             </li>
-                            <li><Link to="#">ماموریت</Link></li>
-                            <li><Link to="#">عملیات</Link></li>
-                            <li><Link to="#">مشتریان</Link></li>
-                            <li><Link to="#">قراردادها</Link></li>
-                            <li>
-                                <Link to="#">
-                                  <h6>گزارشات</h6>
-                                  {showDropDown ? (
-                                    <FiX size={24} onClick={toggleDropDown} />
-                                  ) : (
-                                    <FiAlignRight size={24} onClick={toggleDropDown} />
-                                  )}
-                                </Link>
-                                {showDropDown && (
-                                    <h6>drop down is working</h6>
+                            <li className='simple-li'><Link to="#">ماموریت</Link></li>
+                            <li className='simple-li'><Link to="#">عملیات</Link></li>
+                            <li className='drop-down-li'>
+                                <div className='drop-down-content' onClick={() => toggleSubmenu('clients')}>
+                                    <p className='drop-down-text'>مشتریان</p>
+                                    {activeSubmenu === 'clients' ? (
+                                        <SlArrowUp size={14} />
+                                    ) : (
+                                        <SlArrowDown size={14} />
+                                    )}
+                                </div>
+                                {activeSubmenu === 'clients' && (
+                                    <div className='submenu'>
+                                        <p className='submenu-text'><Link to="#" style={{padding: 0}}>ثبت مشتری جدید</Link></p>
+                                        <p className='submenu-text'><Link to="#" style={{padding: 0}}>لیست مشتریان</Link></p>
+                                    </div>
                                 )}
                             </li>
-                            <li><Link to="#">اموال</Link></li>
-                            <li><Link to="#">امور مالی</Link></li>
-                            <li><Link to="#">تنظیمات</Link></li>
+                            <li className='simple-li'><Link to="#">قراردادها</Link></li>
+                            <li className='simple-li'>
+                                <div className='drop-down-content' onClick={() => toggleSubmenu('reports')}>
+                                    <p className='drop-down-text'>گزارشات</p>
+                                    {activeSubmenu === 'reports' ? (
+                                        <SlArrowUp size={14} />
+                                    ) : (
+                                        <SlArrowDown size={14} />
+                                    )}
+                                </div>
+                                {activeSubmenu === 'reports' && (
+                                   <div className='submenu'>
+                                    <p className='submenu-text'>گزارش بازدید</p>
+                                    <p className='submenu-text'>گزارش سرقت</p>
+                                    <p className='submenu-text'>گزارش خرابی</p>
+                                   </div>
+                                )}
+                            </li>
+                            <li className='drop-down-li'>
+                                <div className='drop-down-content' onClick={() => toggleSubmenu('assets')}>
+                                    <p className='drop-down-text'>اموال</p>
+                                    {activeSubmenu === 'assets' ? (
+                                        <SlArrowUp size={14} />
+                                    ) : (
+                                        <SlArrowDown size={14} />
+                                    )}
+                                </div>
+                                {activeSubmenu === 'assets' && (
+                                    <div className='submenu'>
+                                        <p className='submenu-text'>وسایل نقلیه</p>
+                                        <p className='submenu-text'>تسلیحات</p>
+                                        <p className='submenu-text'>تجهیزات امنیتی</p>
+                                    </div>
+                                )}
+                            </li>
+                            <li className='simple-li'><Link to="#">امور مالی</Link></li>
+                            <li className='simple-li'><Link to="#">تنظیمات</Link></li>
                         </ul>
                     </div>
                     <div className="theme">
