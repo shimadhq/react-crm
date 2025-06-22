@@ -71,7 +71,7 @@ const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false
                                 </div>
                                 {activeSubmenu === 'clients' && (
                                     <div className='submenu'>
-                                        <p className='submenu-text'><Link to="#" style={{padding: 0}}>ثبت مشتری جدید</Link></p>
+                                        <p className='submenu-text'><Link to="/profile/create-clients" style={{padding: 0}}>ثبت مشتری جدید</Link></p>
                                         <p className='submenu-text'><Link to="#" style={{padding: 0}}>لیست مشتریان</Link></p>
                                     </div>
                                 )}

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Dashboard } from '../../components/profile/dashboard/dashboard';
 import { useNavigate } from 'react-router-dom';
-import { useSidebar } from '../../components/sidebar/sidebarContext';
-import Header from '../../components/header/header';
-import Sidebar from '../../components/sidebar/sidebar';
-import './adminProfile.css';
+import { useSidebar } from '../../../components/sidebar/sidebarContext';
+import { CreateClient } from '../../../components/clients/createClient/createClient';
+import Sidebar from '../../../components/sidebar/sidebar';
+import Header from '../../../components/header/header';
+import './createClientScreen.css';
 
-export const AdminProfile = () => {
+export const CreateClientScreen = () => {
     const { setSidebarType, setIsSidebarOpen, isSidebarOpen } = useSidebar();
     const navigate = useNavigate();
     const username = localStorage.getItem('adminUsername');
@@ -16,7 +16,7 @@ export const AdminProfile = () => {
         setSidebarType('profile');
         setIsSidebarOpen(true);
     }, [setSidebarType, setIsSidebarOpen]);
-
+    
     const handleLogout = () => {
         localStorage.removeItem('adminId');
         localStorage.removeItem('adminUsername');
@@ -24,18 +24,19 @@ export const AdminProfile = () => {
     };
 
     return(
-            <div>
-                <div className={isSidebarOpen ? 'mainHeader' : 'main-header'}>
+        <div>
+            <div className={isSidebarOpen ? 'mainHeader' : 'main-header'}>
                 <Header
                 username={username}
                 onLogout={handleLogout}
                 />
-                </div>
-                <Sidebar />
-
-                <div className={isSidebarOpen ? 'mainContent' : 'main-content'}>
-                <Dashboard />
-                </div>
             </div>
+
+            <Sidebar />
+
+            <div className={isSidebarOpen ? 'mainContent' : 'main-content'}>
+                <CreateClient />
+            </div>
+        </div>
     )
 }
