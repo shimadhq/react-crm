@@ -42,7 +42,7 @@ const Sidebar = ({ initialUsers = [], onSelectUser = () => {}, isMinimal = false
                               <FiX className="close-icon" onClick={handleToggleSidebar} />
                             </div>
                         )}
-                        <div className='container'>
+                        <div className='logo-container'>
                             <h2 className="control-panel">پنل مدیریت</h2>
                             <img src={logo} alt="Logo" className="logo" />
                         </div>
